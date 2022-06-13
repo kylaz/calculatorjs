@@ -18,7 +18,7 @@ let calculationOperator = ''
 let currentNumber = '0'
 
 const inputNumber = (number) => {
-    if (currentNumber === 0) {
+    if (currentNumber === '0') {
         currentNumber = number
     } else {
         currentNumber += number
@@ -42,6 +42,13 @@ const inputOperator = (operator) => {
     currentNumber = '0'
 }
 
+const equalSign = document.querySelector('.equal-sign')
+
+equalSign.addEventListener('click', (event) => {
+    calculate()
+    updateScreen(currentNumber)
+})
+
 const calculate = () => {
     let result = ''
     switch (calculationOperator) {
@@ -64,33 +71,17 @@ const calculate = () => {
     calculationOperator = ''
 }
 
-const equalSign = document.querySelector('.equal-sign')
+const clearBtn = document.querySelector('.all-clear')
 
-equalSign.addEventListener('click', (event) => {
-    calculate()
+clearBtn.addEventListener('click', () => {
+    clearAll()
     updateScreen(currentNumber)
-    // console.log('equal')
 })
 
 const clearAll = () => {
     prevNumber = ''
     calculationOperator = ''
     currentNumber = '0'
-}
-
-const clearBtn = document.querySelector('.all-clear')
-
-clearBtn.addEventListener('click', () => {
-    clearAll()
-    updateScreen(currentNumber)
-    // console.log('AC Button')
-})
-
-inputDecimal = (dot) => {
-    if (currentNumber.includes('.')) {
-        return
-    }
-    currentNumber += dot
 }
 
 const decimal = document.querySelector('.decimal')
@@ -100,6 +91,15 @@ decimal.addEventListener('click', (event) => {
     updateScreen(currentNumber)
     // console.log(event.target.value)
 })
+
+inputDecimal = (dot) => {
+    if (currentNumber.includes('.')) {
+        return
+    }
+    currentNumber += dot
+}
+
+
 
 
 
